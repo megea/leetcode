@@ -1,60 +1,70 @@
 #include <string.h>
+#include <stdio.h>
 
-
-
-int findOdd(cha*s, int k)
+int findOdd(char* s, int k)
 {
     int i = k-1, j = k+1;
     while((i >= 0)&&(s[j] != '\0'))
     {
         if(s[i] != s[j])
-            return 2*(j-k) - 1;
+            return j - 1;
         i--;
         j++;
     }
-    return 2*(j-k) - 1;
+    return j - 1;
 }
 
-int findEven(cha*, int k)
+int findEven(char* s, int k)
 {
     int i = k, j = k+1;
     while((i >= 0)&&(s[j] != '\0'))
     {
         if(s[i] != s[j])
-            return 2 * (j - k);
+            return j - 1;
         i--;
         j++;
     }
-    return 2 * (j - k);
+    return j - 1;
 }
 
 char* longestPalindrome(char* s)
 {
-    int Max = 0, tempLen = 0;
     int i;
-    int len = strlen(s);
-    char* str;
-    char* temp = s;
+    int index, Max = 1, Start = 0, End = 0;
+//    char* str = s;
 
-    for(i = 0; i < len; i++)
+    if (s == NULL)
     {
-        tempLen = findOdd(s, i);
-        Max = (Max > tempLen) ? Max : tempLen;
-        tempLen = findEven(s, i);
-        Max = (Max > tempLen) ? Max : tempLen;
-
-        s[Max]
-
+        return NULL;
+    }
+/*虽然长度为奇数和偶数，但是可以通过确定最长回文字符串的首位和末位从而可以将回文字符串提取出来*/
+    for(i = 0; s[i]; i++)
+    {
+        index = findOdd(s, i);
+        if(Max < (2 * (index - i) + 1))
+        {
+            Max = 2 * (index - i) + 1;
+            Start = 2 * i - index;
+            End = index;
+        }
+        index = findEven(s, i);
+        if(Max < (2 * (index - i)))
+        {
+            Max = 2 * (index - i);
+            Start = 2 * i - index + 1;
+            End = index;
+        }
 
     }
-
-    return str;
+    s[End + 1] = 0;
+    return s + Start;
 }
 
-void main()
+int main()
 {
     char *s = "helloworld!";
     char *ret;
     ret = longestPalindrome(s);
-    printf("%s\n", &s[2]);
+    printf("%s\n", ret);
+    return 0;
 }

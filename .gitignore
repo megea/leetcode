@@ -1,1 +1,4 @@
 C/leetcode/
+*.exe
+*.o
+*.out
