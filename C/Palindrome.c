@@ -62,7 +62,7 @@ char* longestPalindrome(char* s)
 
 int main()
 {
-    char *s = "helloworld!";
+    char s[] = "helloworld!";   //char *s是定义s为常量区,所以不能指针操作，char s[]将s存在了栈区
     char *ret;
     ret = longestPalindrome(s);
     printf("%s\n", ret);
