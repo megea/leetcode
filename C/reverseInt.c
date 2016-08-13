@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <limits.h>
-//#define BASE 10
+#define BASE 10
 
 int reverse(int x)
 {
@@ -23,16 +23,16 @@ int reverse(int x)
     }
     while (0 != x)
     {
-        iTemp = x % 10;
-        if(iRet > (INT_MAX - iTemp)/10)
+        iTemp = x % BASE;
+        if(iRet > (INT_MAX - iTemp)/BASE)
         {
             return 0;   //Ô½½ç
         }
         else
         {
-            iRet = iRet * 10 + iTemp;
+            iRet = iRet * BASE + iTemp;
         }
-        x = x/10;
+        x = x/BASE;
     }
     return iRet * iSign;
 }
