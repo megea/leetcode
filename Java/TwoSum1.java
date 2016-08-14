@@ -2,11 +2,9 @@ package main.java;
 
 import java.util.HashMap;
 
-public class TwoSum1 {
+spublic class TwoSum1 {
 
-	/**
-	 * @param args
-	 */
+
 	public int []twoSum(int[] nums, int target){
 
 		int []aiRet = new int[2];
