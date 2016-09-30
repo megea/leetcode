@@ -3,3 +3,4 @@ C/leetcode/
 *.o
 *.out
 *.swp
+*.metadata
